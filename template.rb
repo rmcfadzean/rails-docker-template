@@ -114,7 +114,9 @@ end
 
 def add_repo_to_source
   if __FILE__.match?(%r{\Ahttps?://})
-    source_root = Dir.mktmpdir('rails-docker-template')
+    require 'fileutils'
+    require 'shellwords'
+    source_root = Dir.mktmpdir('rails-docker-template-')
     at_exit { FileUtils.remove_entry(source_root) }
     git clone: [
       '--quiet',

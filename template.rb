@@ -20,7 +20,7 @@ end
 
 # Run rubocop
 def run_rubocop
-  bundle_command 'exec rubocop -a'
+  bundle_command 'exec rubocop -a > /dev/null'
 end
 
 # RSpec

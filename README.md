@@ -1,4 +1,4 @@
-# Rails Docker Template
+# Rails Docker Template [WIP]
 A Rails template for generating a clean, new Rails (API) project with Docker, docker-compose, rspec and some nice defaults.
 
 # Notes / Requirements
@@ -10,12 +10,29 @@ A Rails template for generating a clean, new Rails (API) project with Docker, do
 
 # Usage
 
+## Installation
+
 ```sh
 rails new my_unicorn \
   -d postgresql \
   --api \
   -m https://raw.githubusercontent.com/rmcfadzean/rails-docker-template/master/template.rb
 ```
+
+## Using the application
+
+### Development
+
+TODO
+
+### Testing
+
+TODO
+
+### Deploying
+
+TODO
+
 # The opinions
 
 * Testing is done with Rspec & Rack::Test
@@ -24,7 +41,7 @@ rails new my_unicorn \
 * Docker & Docker compose are used for a containerised application
 * Minimal frills
 
-### Gem List
+## Gem List
 
 * Core
   * rails 5.0

@@ -1,0 +1,29 @@
+FROM ruby:2.4
+
+# Some requirements for building gems
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    --no-install-recommends
+
+# Where your application lives
+ENV APP_HOME /app
+
+# Create the application directory
+RUN mkdir -p $APP_HOME
+
+# Set $APP_HOME as the working directory. All commands are now run from inside of it
+WORKDIR $APP_HOME
+
+# Copy in the Gemfile & lockfile. Install them
+# Doing this first helps with caching
+COPY Gemfile* ./
+RUN bundle install
+
+# Copy in our application directory
+COPY . $APP_HOME
+
+ENV PORT 3000
+EXPOSE $PORT
+
+CMD ["rails", "server", "-b", "0.0.0.0"]

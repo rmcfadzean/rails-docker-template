@@ -1,0 +1,14 @@
+# Git related
+.git
+.gitignore
+
+# Unrequired
+README*
+
+.env
+
+tmp/*
+log/*
+
+# Normalize bundler
+.bundle

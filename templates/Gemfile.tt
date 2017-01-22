@@ -1,0 +1,61 @@
+# frozen_string_literal: true
+source 'https://rubygems.org'
+
+# Replaces git:// with https:// for security
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
+# Core
+gem 'rails', '~> 5.0.1'
+gem 'pg', '~> 0.18'
+gem 'puma', '~> 3.0'
+<% if options.api? %>
+gem 'rack-cors'
+<% end %>
+# Health checks
+gem 'health_check'
+
+group :development, :test do
+  # Environment
+  gem 'dotenv-rails'
+
+  # Testing
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+
+  # Debugging
+  gem 'awesome_print'
+  gem 'pry-rails'
+
+  # Gem Security
+  gem 'bundler-audit'
+end
+
+group :development do
+  # Annotates Models & Routes
+  gem 'annotate'
+  # Avoid N+1 Queries
+  gem 'bullet'
+
+  # Security & Linting
+  gem 'brakeman'
+  gem 'rubocop'
+
+  # Faster loading
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-commands-rspec'
+end
+
+group :test do
+  gem 'simplecov', require: false
+  gem 'timecop'
+  gem 'webmock'
+end
+
+group :staging, :production do
+  gem 'rack-timeout'
+end

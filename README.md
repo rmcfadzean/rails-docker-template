@@ -50,6 +50,7 @@ TODO
   * puma
   * rack-cors - [Cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
   * [health_check](https://github.com/ianheggie/health_check) - Creates a `_health` canary endpoint.
+  * active_model_serializers
 * Testing
   * rspec-rails
   * webmock - Stop hitting real endpoints! You're testing your application, not theirs.
@@ -67,7 +68,6 @@ TODO
   * bundler-audit - Checks your gemfile for known vulnerabilities
 * Utils
   * annotate - Annotates your models, routes and factories with schema comments. Helpful for at-a-glance checks.
-  * spring - For faster loading times
 
 ## Credits
 

@@ -1,16 +1,17 @@
 # Rails Docker Template [WIP]
+
 A Rails template for generating a clean, new Rails (API) project with Docker, docker-compose, rspec and some nice defaults.
 
-# Notes / Requirements
+## Notes / Requirements
 
 * This is **very** opinionated.
 * Rails >= 5.0.0
 * Ruby 2.4.0
 * `--api` only (for now)
 
-# Usage
+## Usage
 
-## Installation
+### Installation
 
 ```sh
 rails new my_unicorn \
@@ -19,21 +20,21 @@ rails new my_unicorn \
   -m https://raw.githubusercontent.com/rmcfadzean/rails-docker-template/master/template.rb
 ```
 
-## Using the application
+### Using the application
 
-### Development
+#### Development
+
+`docker-compose run web rails db:create`
+
+#### Testing
+
+`docker-compose run web rspec`
+
+#### Deploying
 
 TODO
 
-### Testing
-
-TODO
-
-### Deploying
-
-TODO
-
-# The opinions
+## The opinions
 
 * Testing is done with Rspec & Rack::Test
   * Controller tests are [out](https://github.com/rails/rails/issues/18950#issuecomment-77924771)
@@ -41,7 +42,7 @@ TODO
 * Docker & Docker compose are used for a containerised application
 * Minimal frills
 
-## Gem List
+### Gem List
 
 * Core
   * rails 5.0
@@ -68,12 +69,12 @@ TODO
   * annotate - Annotates your models, routes and factories with schema comments. Helpful for at-a-glance checks.
   * spring - For faster loading times
 
-# Credits
+## Credits
 
 * [Suspenders](https://github.com/thoughtbot/suspenders/)
 * [jkxyz/rails-docker-template](https://github.com/jkxyz/rails-docker-template)
 * [mattbrictson/rails-template](https://github.com/mattbrictson/rails-template)
 
-# License
+## License
 
 MIT

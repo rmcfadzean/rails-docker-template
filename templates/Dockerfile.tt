@@ -1,18 +1,21 @@
-FROM ruby:2.4
+FROM ruby:2.4-alpine
 
-# Some requirements for building gems
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpq-dev \
-    --no-install-recommends
-
-# Where your application lives
+ENV PORT 3000
 ENV APP_HOME /app
 
-# Create the application directory
-RUN mkdir -p $APP_HOME
+ENV BUILD_PACKAGES ruby-dev build-base
+ENV DEV_PACKAGES tzdata postgresql-dev
+ENV RUBY_PACKAGES ruby-json yaml
 
-# Set $APP_HOME as the working directory. All commands are now run from inside of it
+ENV BUNDLE_JOBS 4
+
+RUN apk --update --upgrade add \
+    $BUILD_PACKAGES \
+    $RUBY_PACKAGES \
+    $DEV_PACKAGES && \
+    rm -rf /var/cache/apk/*
+
+RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
 # Copy in the Gemfile & lockfile. Install them
@@ -23,7 +26,6 @@ RUN bundle install
 # Copy in our application directory
 COPY . $APP_HOME
 
-ENV PORT 3000
 EXPOSE $PORT
 
 CMD ["rails", "server", "-b", "0.0.0.0"]

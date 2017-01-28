@@ -18,11 +18,6 @@ def apply_bullet
   )
 end
 
-# Run rubocop
-def run_rubocop
-  bundle_command 'exec rubocop -a > /dev/null'
-end
-
 # RSpec
 def apply_rspec
   directory 'spec'
@@ -146,8 +141,6 @@ def apply_template
   apply_rspec
 
   tidy_generators
-
-  run_rubocop
 end
 
 apply_template

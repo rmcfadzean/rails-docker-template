@@ -58,6 +58,7 @@ TODO
   * factory_girl_rails - Boo fixtures. Yay factories!
   * timecop - Allows you to timetravel during your tests
   * simplecov - Test coverage checker
+  * [faker](https://github.com/stympy/faker) - Generating fake data
 * Debugging
   * awesome_print - `ap @object` will print out things in a nice way to help with puts debugging
   * pry-rails - `binding.pry` will save your life

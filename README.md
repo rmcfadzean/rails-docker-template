@@ -50,7 +50,7 @@ TODO
   * puma
   * rack-cors - [Cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
   * [health_check](https://github.com/ianheggie/health_check) - Creates a `_health` canary endpoint.
-  * active_model_serializers
+  * jbuilder
 * Testing
   * rspec-rails
   * webmock - Stop hitting real endpoints! You're testing your application, not theirs.

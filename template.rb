@@ -40,7 +40,7 @@ def apply_dotfiles
   copy_file 'editorconfig', '.editorconfig'
   copy_file 'rubocop.yml', '.rubocop.yml'
   copy_file 'ruby-version', '.ruby-version'
-  copy_file 'env', '.env'
+  copy_file 'env.sample', '.env.sample'
 end
 
 # Docker
@@ -63,6 +63,10 @@ end
 # Health checks
 def apply_health_endpoint
   template 'config/initializers/health_checks.rb'
+end
+
+def apply_sentry
+  template 'config/initializers/sentry.rb'
 end
 
 # Clean up Generators
@@ -136,6 +140,7 @@ def apply_template
   apply_docker
   apply_puma
   apply_health_endpoint
+  apply_sentry
   apply_bullet
   apply_tasks
   apply_rspec

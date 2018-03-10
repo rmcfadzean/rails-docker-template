@@ -6,6 +6,7 @@ development: &default
   username: postgres
   password:
   host: postgres
+  timeout: 5000
 
 test:
   <<: *default

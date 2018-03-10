@@ -1,4 +1,4 @@
-FROM ruby:2.4-alpine
+FROM ruby:2.5-alpine3.7
 
 ENV PORT 3000
 ENV APP_HOME /app
@@ -7,25 +7,20 @@ ENV BUILD_PACKAGES ruby-dev build-base
 ENV DEV_PACKAGES tzdata postgresql-dev
 ENV RUBY_PACKAGES ruby-json yaml
 
-ENV BUNDLE_JOBS 4
-
-RUN apk --update --upgrade add \
+RUN apk add --update --upgrade --no-cache \
     $BUILD_PACKAGES \
     $RUBY_PACKAGES \
     $DEV_PACKAGES && \
     rm -rf /var/cache/apk/*
 
-RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
 # Copy in the Gemfile & lockfile. Install them
 # Doing this first helps with caching
 COPY Gemfile* ./
-RUN bundle install
+RUN bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3
 
 # Copy in our application directory
 COPY . $APP_HOME
-
-EXPOSE $PORT
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
